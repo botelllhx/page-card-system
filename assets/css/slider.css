@@ -1,0 +1,7 @@
+.pcs-slider h3 {
+    font-family: var(--pcs-title-font);
+    font-size: 1em;
+    font-weight: 700;
+    margin: 10px;
+    color: var(--pcs-title-color);
+}

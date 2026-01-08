@@ -1,0 +1,29 @@
+.pcs-horizontal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.pcs-card-horizontal {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.pcs-card-horizontal img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.pcs-card-horizontal .pcs-card-content {
+  padding: 14px;
+}
+
+.pcs-card-horizontal h3 {
+  font-family: var(--pcs-title-font);
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--pcs-title-color);
+  margin: 0;
+}

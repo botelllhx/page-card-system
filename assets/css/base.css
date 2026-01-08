@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ===============================
+   VARIÁVEIS GLOBAIS
+================================ */
+:root {
+  --pcs-title-font: "Poppins", sans-serif;
+  --pcs-title-color: var(--awb-text-color, #040486);
+}
+
+.pcs-card {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.pcs-card a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.pcs-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.pcs-card h3 {
+  font-family: "Poppins";
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--awb-text-color);
+  margin: 0;
+  line-height: 1.3;
+}
