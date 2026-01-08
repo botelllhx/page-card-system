@@ -1,0 +1,349 @@
+/* ===============================
+   CARD BASE
+================================ */
+.pcs-card {
+    background: var(--pcs-bg);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Card clicável */
+.pcs-card a {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===============================
+   IMAGEM
+================================ */
+.pcs-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ===============================
+   CONTEÚDO
+================================ */
+.pcs-card-content {
+    padding: 16px;
+}
+
+.pcs-card h3 {
+    font-family: var(--pcs-font);
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--pcs-title-color);
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.pcs-excerpt {
+    font-size: 0.9em;
+    color: var(--pcs-text-color);
+    margin: 0 0 6px;
+}
+
+.pcs-meta {
+    font-size: 0.75em;
+    color: #777;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 768px) {
+    .pcs-card img {
+        height: 180px;
+    }
+}
+
+/* ===============================
+   FEATURED CARD
+================================ */
+
+.pcs-featured {
+    display: grid;
+    gap: 24px;
+}
+
+.pcs-card-featured {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.pcs-card-featured img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    display: block;
+}
+
+.pcs-card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 24px;
+    background: linear-gradient(to top, rgba(0, 0, 0, .6), transparent);
+}
+
+.pcs-card-featured h3 {
+    font-family: var(--pcs-title-font);
+    font-size: 1.6em;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .pcs-card-featured img {
+        height: 280px;
+    }
+}
+
+/* ===============================
+   LIST CARD
+================================ */
+
+.pcs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Card horizontal */
+.pcs-card-list a {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Imagem à esquerda */
+.pcs-card-list .pcs-card-media {
+    flex: 0 0 140px;
+}
+
+.pcs-card-list .pcs-card-media img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+}
+
+/* Conteúdo à direita */
+.pcs-card-list .pcs-card-content {
+    flex: 1;
+}
+
+.pcs-card-list h3 {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--awb-text-color);
+    margin: 0;
+    line-height: 1.35;
+}
+
+/* Hover discreto */
+.pcs-card-list a:hover h3 {
+    text-decoration: underline;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+
+@media (max-width: 768px) {
+
+    .pcs-card-list a {
+        gap: 14px;
+    }
+
+    .pcs-card-list .pcs-card-media {
+        flex: 0 0 110px;
+    }
+
+    .pcs-card-list .pcs-card-media img {
+        height: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .pcs-card-list a {
+        align-items: flex-start;
+    }
+
+    .pcs-card-list .pcs-card-media {
+        flex: 0 0 90px;
+    }
+
+    .pcs-card-list .pcs-card-media img {
+        height: 70px;
+    }
+}
+
+/* ===============================
+   HORIZONTAL CARD
+================================ */
+
+.pcs-horizontal {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.pcs-card-horizontal {
+    border-radius: 18px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.pcs-card-horizontal img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.pcs-card-horizontal .pcs-card-content {
+    padding: 14px;
+}
+
+.pcs-card-horizontal h3 {
+    font-family: var(--pcs-title-font);
+    font-weight: 700;
+    font-size: 1em;
+    color: var(--pcs-title-color);
+    margin: 0;
+}
+
+/* ===============================
+   SLIDER CARD
+================================ */
+
+.pcs-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Swiper base */
+.pcs-slider .swiper {
+    width: 100%;
+}
+
+/* Cada slide ocupa 100% */
+.pcs-slider .swiper-slide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* ===============================
+   CARD NO SLIDER
+================================ */
+.pcs-slider .pcs-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Imagem maior no slider */
+.pcs-slider .pcs-card img {
+    height: 320px;
+    object-fit: cover;
+}
+
+/* Conteúdo */
+.pcs-slider .pcs-card-content {
+    padding: 20px;
+}
+
+/* Título */
+.pcs-slider .pcs-card h3 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1.2em;
+    color: #040486;
+    margin-bottom: 10px;
+}
+
+/* Excerpt opcional */
+.pcs-slider .pcs-excerpt {
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+/* ===============================
+   SETAS
+================================ */
+.pcs-slider .swiper-button-next,
+.pcs-slider .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #040486;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+.pcs-slider .swiper-button-next::after,
+.pcs-slider .swiper-button-prev::after {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Hover */
+.pcs-slider .swiper-button-next:hover,
+.pcs-slider .swiper-button-prev:hover {
+    transform: scale(1.1);
+}
+
+/* ===============================
+   PAGINAÇÃO (DOTS)
+================================ */
+.pcs-slider .swiper-pagination-bullet {
+    background: #040486;
+    opacity: 0.3;
+}
+
+.pcs-slider .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 1024px) {
+    .pcs-slider .pcs-card img {
+        height: 260px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pcs-slider .pcs-card img {
+        height: 220px;
+    }
+
+    .pcs-slider .swiper-button-next,
+    .pcs-slider .swiper-button-prev {
+        width: 32px;
+        height: 32px;
+    }
+
+    .pcs-slider .swiper-button-next::after,
+    .pcs-slider .swiper-button-prev::after {
+        font-size: 12px;
+    }
+}
+
+/* FIM CARD */

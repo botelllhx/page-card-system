@@ -8,7 +8,7 @@
         </div>
 
         <div class="pcs-card-overlay">
-          <h3><?php the_title(); ?></h3>
+          <h3><?php echo pcs_truncate_title(get_the_title(), $atts); ?></h3>
         </div>
 
       </a>

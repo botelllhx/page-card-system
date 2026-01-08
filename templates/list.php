@@ -9,7 +9,7 @@
 
         <div class="pcs-card-content">
           <h3 class="pcs-card-title">
-            <?php the_title(); ?>
+            <?php echo pcs_truncate_title(get_the_title(), $atts); ?>
           </h3>
         </div>
 

@@ -1,163 +1,116 @@
 <?php
 /*
 Plugin Name: Page Card System
-Description: Sistema avançado de exibição de páginas ou posts em formato de cards reutilizáveis.
-Version: 1.1.0
+Description: Sistema avançado de exibição de páginas ou posts em formato de cards.
+Version: 1.1
 Author: Teknisa
 */
 
-if (!defined('ABSPATH')) {
-    exit;
-}
+if (!defined('ABSPATH')) exit;
 
-/* =====================================================
-   CONSTANTES
-===================================================== */
-
-define('PCS_VERSION', '1.1.0');
-define('PCS_PATH', plugin_dir_path(__FILE__));
-define('PCS_URL', plugin_dir_url(__FILE__));
-
-/* =====================================================
+/* ===============================
    MENU ADMIN
-===================================================== */
-
+================================ */
 add_action('admin_menu', function () {
     add_menu_page(
         'Page Card System',
         'Page Cards',
         'manage_options',
         'page-card-system',
-        'pcs_admin_page',
+        function () {
+            include plugin_dir_path(__FILE__) . 'admin/admin-page.php';
+        },
         'dashicons-screenoptions',
         25
     );
 });
 
-function pcs_admin_page() {
-    include PCS_PATH . 'admin/admin-page.php';
-}
+/* ===============================
+   ASSETS FRONT
+================================ */
+add_action('wp_enqueue_scripts', function () {
+    $base = plugin_dir_url(__FILE__);
 
-/* =====================================================
-   ADMIN ASSETS
-===================================================== */
+    wp_enqueue_style('pcs-base', $base . 'assets/css/base.css', [], '1.1');
+    wp_enqueue_style('pcs-featured', $base . 'assets/css/featured.css', [], '1.1');
+    wp_enqueue_style('pcs-list', $base . 'assets/css/list.css', [], '1.1');
+    wp_enqueue_style('pcs-horizontal', $base . 'assets/css/horizontal.css', [], '1.1');
+    wp_enqueue_style('pcs-slider', $base . 'assets/css/slider.css', [], '1.1');
 
-add_action('admin_enqueue_scripts', function ($hook) {
+    wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css');
 
-    // Apenas na página do plugin
-    if ($hook !== 'toplevel_page_page-card-system') {
-        return;
+    wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js', [], null, true);
+    wp_enqueue_script('pcs-slider', $base . 'assets/js/slider.js', [], '1.1', true);
+});
+
+/* ===============================
+   ASSETS ADMIN
+================================ */
+add_action('admin_enqueue_scripts', function () {
+    wp_enqueue_style(
+        'pcs-admin',
+        plugin_dir_url(__FILE__) . 'assets/css/admin-style.css',
+        [],
+        '1.1'
+    );
+});
+
+/* ===============================
+   HELPERS
+================================ */
+function pcs_truncate_title($title, $atts) {
+    $limit = isset($atts['title_length']) ? intval($atts['title_length']) : 0;
+
+    if ($limit > 0 && mb_strlen($title) > $limit) {
+        return mb_substr($title, 0, $limit) . '…';
     }
 
-    wp_enqueue_style(
-        'pcs-admin-style',
-        PCS_URL . 'admin/admin-style.css',
-        [],
-        PCS_VERSION
-    );
-});
+    return $title;
+}
 
-/* =====================================================
-   FRONTEND ASSETS
-===================================================== */
-
-add_action('wp_enqueue_scripts', function () {
-
-    // Base (fontes + variáveis)
-    wp_enqueue_style(
-        'pcs-base',
-        PCS_URL . 'assets/css/base.css',
-        [],
-        PCS_VERSION
-    );
-
-    // Layouts
-    wp_enqueue_style(
-        'pcs-featured',
-        PCS_URL . 'assets/css/featured.css',
-        ['pcs-base'],
-        PCS_VERSION
-    );
-
-    wp_enqueue_style(
-        'pcs-list',
-        PCS_URL . 'assets/css/list.css',
-        ['pcs-base'],
-        PCS_VERSION
-    );
-
-    wp_enqueue_style(
-        'pcs-horizontal',
-        PCS_URL . 'assets/css/horizontal.css',
-        ['pcs-base'],
-        PCS_VERSION
-    );
-
-    wp_enqueue_style(
-        'pcs-slider',
-        PCS_URL . 'assets/css/slider.css',
-        ['pcs-base'],
-        PCS_VERSION
-    );
-
-    // JS do slider (Swiper ou custom)
-    wp_enqueue_script(
-        'pcs-slider',
-        PCS_URL . 'assets/js/slider.js',
-        ['jquery'],
-        PCS_VERSION,
-        true
-    );
-});
-
-/* =====================================================
-   SHORTCODE PRINCIPAL
-===================================================== */
-
+/* ===============================
+   SHORTCODE
+================================ */
 function pcs_cards_shortcode($atts) {
 
     $atts = shortcode_atts([
-        'type'   => 'post',       // post | page
-        'parent' => '',           // parent ID (páginas)
-        'layout' => 'featured',   // featured | list | horizontal | slider
-        'limit'  => 5,
-        'offset' => 0,
-        'order'  => 'DESC'
-    ], $atts, 'pcs_cards');
+        'type'          => 'post',
+        'parent'        => '',
+        'layout'        => 'featured',
+        'limit'         => 5,
+        'offset'        => 0,
+        'order'         => 'DESC',
+        'title_length'  => 0,
+        'show_excerpt'  => false,
+        'show_meta'     => false,
+    ], $atts);
 
     $args = [
-        'post_type'      => sanitize_key($atts['type']),
+        'post_type'      => $atts['type'],
         'posts_per_page' => intval($atts['limit']),
         'offset'         => intval($atts['offset']),
-        'order'          => sanitize_text_field($atts['order']),
+        'order'          => $atts['order'],
         'post_status'    => 'publish'
     ];
 
-    // Parent (apenas para páginas)
-    if ($atts['type'] === 'page' && !empty($atts['parent'])) {
+    if ($atts['type'] === 'page' && $atts['parent']) {
         $args['post_parent'] = intval($atts['parent']);
     }
 
     $query = new WP_Query($args);
 
-    if (!$query->have_posts()) {
-        return '';
-    }
+    if (!$query->have_posts()) return '';
 
     ob_start();
 
-    $layout = sanitize_file_name($atts['layout']);
-    $template = PCS_PATH . "templates/{$layout}.php";
-
-    // Fallback seguro
+    $template = plugin_dir_path(__FILE__) . 'templates/' . $atts['layout'] . '.php';
     if (!file_exists($template)) {
-        $template = PCS_PATH . 'templates/featured.php';
+        $template = plugin_dir_path(__FILE__) . 'templates/featured.php';
     }
 
     include $template;
 
     wp_reset_postdata();
-
     return ob_get_clean();
 }
 

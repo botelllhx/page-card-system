@@ -1,36 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
 /* ===============================
    VARIÁVEIS GLOBAIS
 ================================ */
 :root {
-  --pcs-title-font: "Poppins", sans-serif;
-  --pcs-title-color: var(--awb-text-color, #040486);
+  --pcs-font: "Poppins", sans-serif;
+  --pcs-title-color: #040486;
+  --pcs-text-color: #333;
+  --pcs-bg: #fff;
 }
 
+/* ===============================
+   CARD BASE
+================================ */
 .pcs-card {
-  background: #fff;
+  background: var(--pcs-bg);
   border-radius: 18px;
   overflow: hidden;
 }
 
+/* Card clicável */
 .pcs-card a {
   display: block;
-  color: inherit;
+  height: 100%;
   text-decoration: none;
+  color: inherit;
 }
 
+/* ===============================
+   IMAGEM
+================================ */
 .pcs-card img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 220px;
   object-fit: cover;
+  display: block;
+}
+
+/* ===============================
+   CONTEÚDO
+================================ */
+.pcs-card-content {
+  padding: 16px;
 }
 
 .pcs-card h3 {
-  font-family: "Poppins";
+  font-family: var(--pcs-font);
   font-weight: 700;
   font-size: 1em;
-  color: var(--awb-text-color);
-  margin: 0;
+  color: var(--pcs-title-color);
+  margin: 0 0 8px;
   line-height: 1.3;
+}
+
+.pcs-excerpt {
+  font-size: 0.9em;
+  color: var(--pcs-text-color);
+  margin: 0 0 6px;
+}
+
+.pcs-meta {
+  font-size: 0.75em;
+  color: #777;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 768px) {
+  .pcs-card img {
+    height: 180px;
+  }
 }

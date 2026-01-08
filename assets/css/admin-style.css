@@ -1,0 +1,136 @@
+/* ===============================
+   BASE ADMIN
+================================ */
+.pcs-admin {
+  max-width: 1100px;
+  padding: 32px 24px;
+  font-family: "Poppins", sans-serif;
+}
+
+.pcs-admin h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #040486;
+}
+
+.pcs-admin-sub {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 32px;
+}
+
+/* ===============================
+   SEÇÕES
+================================ */
+.pcs-admin-section {
+  margin-bottom: 40px;
+}
+
+.pcs-admin-section h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #040486;
+}
+
+/* ===============================
+   LAYOUTS (PREVIEW)
+================================ */
+.pcs-layouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.pcs-layout-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #e6e8ef;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.pcs-layout-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.pcs-layout-card strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #040486;
+}
+
+.pcs-layout-card p {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+/* ===============================
+   CÓDIGOS / SHORTCODES
+================================ */
+.pcs-layout-card code,
+.pcs-admin code {
+  display: inline-block;
+  background: #f4f6fb;
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #333;
+  word-break: break-word;
+}
+
+/* ===============================
+   TABELA DE PARÂMETROS
+================================ */
+.pcs-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.pcs-admin-table th,
+.pcs-admin-table td {
+  padding: 14px 16px;
+  font-size: 13px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.pcs-admin-table th {
+  background: #f4f6fb;
+  font-weight: 700;
+  color: #040486;
+}
+
+.pcs-admin-table td {
+  color: #444;
+}
+
+.pcs-admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===============================
+   RESPONSIVO ADMIN
+================================ */
+@media (max-width: 768px) {
+  .pcs-admin {
+    padding: 24px 16px;
+  }
+
+  .pcs-admin h1 {
+    font-size: 24px;
+  }
+
+  .pcs-layouts {
+    grid-template-columns: 1fr;
+  }
+}

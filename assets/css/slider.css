@@ -1,7 +1,118 @@
-.pcs-slider h3 {
-    font-family: var(--pcs-title-font);
-    font-size: 1em;
-    font-weight: 700;
-    margin: 10px;
-    color: var(--pcs-title-color);
+/* ===============================
+   CONTAINER DO SLIDER
+================================ */
+.pcs-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Swiper base */
+.pcs-slider .swiper {
+  width: 100%;
+}
+
+/* Cada slide ocupa 100% */
+.pcs-slider .swiper-slide {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===============================
+   CARD NO SLIDER
+================================ */
+.pcs-slider .pcs-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Imagem maior no slider */
+.pcs-slider .pcs-card img {
+  height: 320px;
+  object-fit: cover;
+}
+
+/* Conteúdo */
+.pcs-slider .pcs-card-content {
+  padding: 20px;
+}
+
+/* Título */
+.pcs-slider .pcs-card h3 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #040486;
+  margin-bottom: 10px;
+}
+
+/* Excerpt opcional */
+.pcs-slider .pcs-excerpt {
+  font-size: 0.95em;
+  line-height: 1.5;
+}
+
+/* ===============================
+   SETAS
+================================ */
+.pcs-slider .swiper-button-next,
+.pcs-slider .swiper-button-prev {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: #040486;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.pcs-slider .swiper-button-next::after,
+.pcs-slider .swiper-button-prev::after {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* Hover */
+.pcs-slider .swiper-button-next:hover,
+.pcs-slider .swiper-button-prev:hover {
+  transform: scale(1.1);
+}
+
+/* ===============================
+   PAGINAÇÃO (DOTS)
+================================ */
+.pcs-slider .swiper-pagination-bullet {
+  background: #040486;
+  opacity: 0.3;
+}
+
+.pcs-slider .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 1024px) {
+  .pcs-slider .pcs-card img {
+    height: 260px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pcs-slider .pcs-card img {
+    height: 220px;
+  }
+
+  .pcs-slider .swiper-button-next,
+  .pcs-slider .swiper-button-prev {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pcs-slider .swiper-button-next::after,
+  .pcs-slider .swiper-button-prev::after {
+    font-size: 12px;
+  }
 }
