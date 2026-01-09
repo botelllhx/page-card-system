@@ -73,6 +73,7 @@ Plugin WordPress avançado para exibição de páginas ou posts em formato de **
 
 🗂 Estrutura de Arquivos
 
+```text
 page-card-system/
 ├── page-card-system.php          # Core do plugin
 ├── admin/
@@ -92,6 +93,7 @@ page-card-system/
 │   ├── list.php                  # Template list
 │   ├── horizontal.php            # Template horizontal
 │   └── slider.php                # Template slider
+```
 
 ## ⚡ Notas de Desenvolvimento
 
