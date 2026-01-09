@@ -1,7 +1,7 @@
 # Page Card System
 
 **Versão:** 1.1  
-**Autor:** Mateus Botelho 
+**Autor:** Mateus Botelho
 **Descrição:** Plugin WordPress avançado para exibição de páginas ou posts em formato de **cards editoriais**, com múltiplos layouts, slider, lista vertical e horizontal. Permite controle de título, excerpt, meta, cores e tipografia, além de preview visual no admin.
 
 ---
